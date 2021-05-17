@@ -1,0 +1,259 @@
+<% extend('../layouts/masters') %>
+ <!-- Content Header (Page header) -->
+ <section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1><%= __('admins.sub_categories.title') %></h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#"><%= __('admins.title') %></a></li>
+                    <li class="breadcrumb-item active"><%= __('admins.sub_categories.title') %></li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-outline card-info">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <div class="row">
+                            <div class="col-5">
+                                <input type="text" class="form-control" id="search" placeholder="Tên loại">
+                            </div>
+                            <div class="col-4">
+                                <select class="form-control select2" id="status_search" style="width: 100%;">
+                                    <option selected="selected" value=""><%= __('publics.status') %></option>
+                                    <option value="1">Đã duyệt</option>
+                                    <option value="0">Chưa duyệt</option>
+                                    <option value="2">Chờ duyệt lại</option>
+                                </select>
+                            </div>
+                            <div class="col-3">
+                                <button class="btn btn-block btn-outline-info" id="btnsearch"> <%= __('publics.search') %></button>
+                            </div>
+                        </div>
+                    </h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-info-create" id="create-modal" data-url-create="/admin/settings/sub-categories/create">
+                            <%= __('publics.create') %>
+                        </button>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th style="width: 10px">#</th>
+                            <th><%= __('admins.sub_categories.title') %></th>
+                            <th><%= __('publics.icon') %></th>
+                            <th style="width: 40px"><%= __('publics.status') %></th>
+                            <th style="width: 100px"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="pannel">
+                            <%- include("table",{data:data.subCategories}) %>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer clearfix" id="pagination">
+                    <%- include("../../pagination", {paginator: pages}) %>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-->
+    </div>
+    <div class="modal fade" id="modal-info-create">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h4 class="modal-title"><%= __('admins.sub_categories.title') %></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+            </div>
+            <form action="" method="POST" id="form-sub-category">
+                <div class="modal-body" id="form-create-sub-category">
+                    <!-- template -->
+                    <%- include('xhr/template') %> 
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-info" data-dismiss="modal"><%= __('publics.close') %></button>
+                    <button type="submit" class="btn btn-info"><%= __('publics.submit') %></button>
+                </div>
+            </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+</section>
+<script src="/admin/back.js"></script>
+<script>
+    const url_category = "/admin/settings/sub-categories";
+    const urlStoreSubCategory = "/admin/settings/sub-categories"
+    var categories = (function () {
+
+            const url = url_category;
+            var title = "Are you sure?";
+            var text = "You won't be able to revert this!";
+            var cancelButtonText = "Cancel";
+            var confirmButtonText = "Yes, delete it!";
+            var errorAjax = "server_issue";
+            var errorDelete = "error_delete";
+        
+            var onReady = function () {
+                $('#pagination').on('click', 'ul.pagination a', function (event) {
+                    back.pagination(event, $(this), errorAjax)
+                });
+                $('#pannel').on('change', function () {
+                }).on('click', '.simpleConfirm', function (event) {
+                    console.log(url);
+                    back.destroy(event, $(this), url, title, text, confirmButtonText, cancelButtonText, errorDelete)
+                });
+                $('th span').click(function () {
+                    back.ordering(url, $(this), errorAjax)
+                });
+                $('#btnsearch').click(function () {
+                    back.filters(url, errorAjax)
+                });
+                $('#search').keypress(function (event) {
+                    var keycode = (event.keyCode ? event.keyCode : event.which);
+                    // console.log(keycode);
+                    if (keycode == '13') {
+                        event.preventDefault();
+                        $('#btnsearch').focus().click();
+                    }
+                });
+
+                $('#create-modal').click(function(event){
+                    event.preventDefault();
+                    event.stopPropagation();
+                    let url_create = $(this).data('url-create');
+                    $.ajax({
+                        method: 'GET',
+                        url: url_create,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: async function (res) {
+                            console.log(res);
+                            if(res.status == 200 && res.message === 'success get category'){
+                                await $('#form-create-sub-category').html(res.view);
+                                $('#modal-info-create').modal("show");
+
+                                $('#form-sub-category').attr("action", urlStoreSubCategory);
+                                $('#form-sub-category').attr("method", "POST");
+                            }
+                        },
+                        error: function (err) {
+                            console.log(err)
+                            Swal.fire("server_issue");
+                        }
+                    });
+                });
+
+                $('#form-sub-category').submit(function(event){
+                    event.preventDefault();
+                    event.stopPropagation();
+                    let url_form = $(this).attr("action");
+                    let method = $(this).attr("method");
+                    // let form_data = $(this).serialize();
+                    let form_data = new FormData($(this)[0]);
+                    console.log(form_data);
+
+                    $.ajax({
+                        method: method,
+                        url: url_form,
+                        data: form_data,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: async function (res) {
+                            console.log(res);
+                            if(res.status == 200){
+                                $(this).trigger("reset");
+                                $('#modal-info-create').modal("hide");
+                                back.filters(url, errorAjax)
+                            }
+                        },
+                        error: function (err) {
+                            console.log(err)
+                            Swal.fire("server_issue");
+                        }
+                    });
+                });
+
+                $('#pannel').on('click', '.simpleConfirmEdit', function(event){
+                    event.preventDefault();
+                    event.stopPropagation();
+                    let url_edit = $(this).attr('href');
+                    let url_update = url_edit.split('/');
+                    url_update[5] = 'update';
+                    url_update = url_update.join('/');
+                    $.ajax({
+                        method: 'GET',
+                        url: url_edit,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: async function (res) {
+                            console.log(res);
+                            if(res.status == 200 && res.message === 'success get category edit'){
+                                await $('#form-create-sub-category').html(res.view);
+                                $('#modal-info-create').modal("show");
+
+                                $('#form-sub-category').attr("action", url_update);
+                                $('#form-sub-category').attr("method", "PUT");
+                            }
+                        },
+                        error: function (err) {
+                            console.log(err)
+                            Swal.fire("server_issue");
+                        }
+                    });
+                });
+                
+                $('#pannel').on('change', '.publish-sub-category', function(event){
+                    event.preventDefault();
+                    event.stopPropagation();
+                    let url_publish = $(this).data('url');
+                    let method = $(this).data('method');
+                    $.ajax({
+                        method: method,
+                        url: url_publish,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (res) {
+                            console.log(res);
+                            if(res.status == 200){
+                                // window.location.href = res.link;
+                                back.filters(url, errorAjax)
+                            }
+                        },
+                        error: function (err) {
+                            console.log(err)
+                            if(err.responseJSON.status == 422)
+                                printErrors(err.responseJSON.data);
+                            else
+                                Swal.fire("server_issue");
+                        }
+                    });
+                });
+            };
+
+            return {
+                onReady: onReady
+            }
+
+        })();
+
+    $(document).ready(categories.onReady)
+
+</script>

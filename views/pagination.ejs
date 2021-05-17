@@ -1,0 +1,30 @@
+
+    <% if (typeof paginator.arr_page != 'undefined') {%>
+        <ul class="pagination pagination-sm m-0 float-right">
+            <%# Previous Page Link %>
+            <% 
+            if (paginator.total_page == 1 || paginator.current_page == 1){ %>
+                <li class="page-item disabled"><a href="#" class="page-link">&laquo;</a></li>
+            <% }else { %>
+                <li class="page-item"><a href="<%= paginator.link + paginator.prev%>" rel="prev" class="page-link">&laquo;</a></li>
+            <% } %>
+            <%# Pagination Elements %>
+            <% 
+            paginator.arr_page.forEach(function(value,key){  %>
+                       <% if(value == '...'){ %>
+                           <%# "Three Dots" Separator %>
+                           <li class=" page-item disabled"><a class="page-link" href="javascript:void(0);">...</a></li>
+                       <% }else if (paginator.current_page == value){ %>
+                        <li class="page-item active"><a href="<%= paginator.link + value %>" class="page-link"><%= value %></a></li>
+                       <% }else{ %>
+                        <li class="page-item"><a href="<%= paginator.link + value %>" class="page-link"><%= value %></a></li>
+                       <% } %>
+               <% }) %>
+            <%# Next Page Link %>
+            <% if (paginator.total_page > 1 && paginator.current_page != paginator.total_page ){ %>
+                <li class="page-item"><a href="<%= paginator.link + paginator.next%>" rel="next" class="page-link">&raquo;</a></li>
+            <% }else { %>
+                <li class="page-item disabled"><a href="#" class="page-link">&raquo;</a></li>
+            <% } %>
+        </ul>
+    <% } %>

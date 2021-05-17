@@ -1,0 +1,245 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title"><%= __('admins.basic_info') %></h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="inputName"><%= __('admins.categories.name') %></label>
+                    <input type="text" id="inputName" name="name" class="form-control" value="<%= data.name ? data.name : '' %>">
+                    <p style="color: red;display:none;" id="error_name"></p>
+                </div>
+                <div class="form-group">
+                    <div class="card card-widget widget-user">
+                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                        <div class="widget-user-header text-white banner-widget" style="background: url('<%= data.banner ? "/images/uploadResults/" + data.banner : "/assets/dist/img/photo1.png" %>') center center;">
+                            <h3 class="widget-user-username text-right"><%= data.name ? data.name : 'Elizabeth Pierce' %></h3>
+                            <h5 class="widget-user-desc text-right">Web Designer</h5>
+                        </div>
+                        <input type="file" name="banner" id="banner-input" class="hidden-element">
+                        <div class="widget-user-image widget-icon widget-user-img-container elevation-2">
+                            <img class="icon-lable widget-user-img-full widget-user-img-shape" src="<%= data.icon ? '/images/uploadResults/' + data.icon : '/assets/upload/defaults/add-image.png' %>" alt="User Avatar" >
+                            <input type="file" name="icon" id="icon-input" class="hidden-element">
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-sm-4 border-right">
+                                    <div class="description-block">
+                                        <h5 class="description-header">3,200</h5>
+                                        <span class="description-text">SALES</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-4 border-right">
+                                    <div class="description-block">
+                                        <h5 class="description-header">13,000</h5>
+                                        <span class="description-text">FOLLOWERS</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-4">
+                                    <div class="description-block">
+                                        <h5 class="description-header">35</h5>
+                                        <span class="description-text">PRODUCTS</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                    </div>
+                    <p style="color: red;display:none;" id="error_banner"></p>
+                    <p style="color: red;display:none;" id="error_icon"></p>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <div class="col-md-6">
+        <div class="card card-secondary">
+            <div class="card-header">
+                <h3 class="card-title"><%= __('admins.categories.properties.title') %> </h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <button class="form-control btn btn-outline-info add_element_property" type="button"><%= __('admins.categories.properties.create') %></button>
+                </div>
+                <div class="col-12 properties">
+                    <% if (data.properties){
+                        for (let [key, value] of Object.entries(JSON.parse(data.properties))) {
+                            if (value) {
+                            %>
+                            <div class="row general" id="<%= key %>">
+                                <div class="col-1 text-center">
+                                    <p><i class="fa fa-plus"></i></p>
+                                </div>
+                                <div class="col-5">
+                                    <input name="properties[<%= key %>][name]" value="<%= value.name %>" type="text" class="form-control" id="name_1">
+                                </div>
+                                <div class="col-5">
+                                    <input name="properties[<%= key %>][value]" value="<%= value.value %>" type="text" class="form-control" id="value_1">
+                                </div>
+                                <div class="col-1">
+                                    <p class="btn btn-danger" onclick="deleteProperty(this,null)"><i class="fa fa-trash-alt"></i></p>
+                                </div>
+                            </div>
+                            <%
+                            }
+                        }
+                    }else{ %> 
+                    <!-- @if(isset($category) && !is_null($category->properties))
+                        @foreach(json_decode($category->properties) as $key => $value) -->
+                            <!-- <div class="row general" id="{!! $key !!}">
+                                <div class="col-1 text-center">
+                                    <p><i class="fa fa-plus"></i></p>
+                                </div>
+                                <div class="col-5">
+                                    <input name="properties[{!! $key !!}][name]" type="text" value="{!! $value->name !!}" class="form-control" id="name_{!! $key !!}}">
+                                </div>
+                                <div class="col-5">
+                                    <input name="properties[{!! $key !!}][value]" type="text" value="{!! $value->value !!}" class="form-control" id="value_{!! $key !!}">
+                                </div>
+                                <div class="col-1">
+                                    <p class="btn btn-danger" onclick="deleteProperty(this,null)"><i class="fa fa-trash-alt"></i></p>
+                                </div>
+                            </div> -->
+                        <!-- @endforeach
+                    @else -->
+                        <div class="row general" id="1">
+                            <div class="col-1 text-center">
+                                <p><i class="fa fa-plus"></i></p>
+                            </div>
+                            <div class="col-5">
+                                <input name="properties[1][name]" type="text" class="form-control" id="name_1">
+                            </div>
+                            <div class="col-5">
+                                <input name="properties[1][value]" type="text" class="form-control" id="value_1">
+                            </div>
+                            <div class="col-1">
+                                <p class="btn btn-danger" onclick="deleteProperty(this,null)"><i class="fa fa-trash-alt"></i></p>
+                            </div>
+                        </div>
+                        <%
+                        }
+                    %>
+                    <!-- @endif -->
+                    <!-- <input type="hidden" name="tmp_id" value=""> -->
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <a href="#" class="btn btn-secondary cancel-submit" style="width: 100%;"><%= __('publics.cancel') %></a>
+    </div>
+
+    <div class="col-6">
+        <input type="submit" value="<%= __('publics.submit') %>" class="btn btn-success float-right" style="width: 100%;">
+    </div>
+</div>
+
+<script src="/admin/js/categories/categories.js"></script>
+
+<script>
+    $(function () {
+        $.validator.setDefaults({
+            submitHandler: function () {
+                let url = $('#form-category').attr('action');
+                let method = $('#method').val();
+                if (!method){
+                    method = $("#form-category").attr("method") 
+                }
+                let form_data = new FormData($('#form-category')[0]);
+                $.ajax({
+                    method: method,
+                    url: url,
+                    data: form_data,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        console.log(res);
+                        if(res.status == 200){
+                            window.location.href = `/admin/settings/categories`;
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err)
+                        if(err.responseJSON.status == 422)
+                            printErrors(err.responseJSON.data);
+                        else
+                            Swal.fire("server_issue");
+                    }
+                });
+            }
+        });
+        $('#form-category').validate({
+            rules: {
+                email: {
+                    required: true,
+                    email: true,
+                },
+                password: {
+                    required: true,
+                    minlength: 5
+                },
+                name: {
+                    required: true
+                },
+            },
+            messages: {
+                email: {
+                    required: "Please enter a email address",
+                    email: "Please enter a vaild email address"
+                },
+                password: {
+                    required: "Please provide a password",
+                    minlength: "Your password must be at least 5 characters long"
+                },
+                name: "Please accept our terms"
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+        $(".cancel-submit").on('click', function(event){
+            event.preventDefault();
+            event.stopPropagation();
+            $('#form-category').trigger('reset');
+            window.location.href = '/admin/settings/categories';
+        });
+
+        function printErrors(errors) {
+            for (let [key, value] of Object.entries(errors)) {
+                console.log(value);
+                $("#error_"+key).replaceWith(`<p style="color: red;" id="error_${key}">${value}</p>`);
+            }      
+        }
+    });
+</script>

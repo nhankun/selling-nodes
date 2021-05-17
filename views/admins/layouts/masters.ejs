@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AdminLTE 3 | Dashboard</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/assets/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="/assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- map -->
+    <link rel="stylesheet" href="/assets/plugins/leaflet/leaflet.css">
+    <!-- country input geodatasource -->
+    <link rel="stylesheet" href="/assets/plugins/country-region/assets/css/geodatasource-countryflag.css">
+    <!-- tel phone -->
+    <link rel="stylesheet" href="/admin/plugins/tel-input/build/css/intLTelInput.css">
+    <!-- Ekko Lightbox -->
+    <link rel="stylesheet" href="/assets/plugins/ekko-lightbox/ekko-lightbox.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="/assets/plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/assets/dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="/assets/plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="/assets/plugins/summernote/summernote-bs4.min.css">
+
+    <link rel="stylesheet" href="/assets/plugins/sweetalert2/sweetalert2.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="/admin/main.css">
+
+    
+
+        
+    <!-- jQuery -->
+    <script src="/assets/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- tel phone -->
+    <script src="/admin/plugins/tel-input/build/js/intLTelInput.js"></script>
+    <script src="/admin/plugins/tel-input/build/js/utils.js"></script>
+    <!-- map -->
+    <script src="/assets/plugins/leaflet/leaflet.js"></script>
+    <!-- country geodatasource -->
+    <script src="/assets/plugins/country-region/assets/js/geodatasource-cr.js"></script>
+    <!-- link to languages po files -->
+    <link rel="gettext" type="application/x-po" href="/assets/plugins/country-region/languages/en/LC_MESSAGES/en.po" />
+    <link rel="gettext" type="application/x-po" href="/assets/plugins/country-region/languages/vi/LC_MESSAGES/vi.po" />
+    <script type="text/javascript" src="/assets/plugins/country-region/assets/js/Gettext.js"></script>
+    <!-- Ekko Lightbox -->
+    <script src="/assets/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
+    <!-- jquery-validation -->
+    <script src="/assets/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="/assets/plugins/jquery-validation/additional-methods.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Select2 -->
+    <script src="/assets/plugins/select2/js/select2.full.min.js"></script>
+    <!-- ChartJS -->
+    <script src="/assets/plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="/assets/plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="/assets/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="/assets/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="/assets/plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="/assets/plugins/moment/moment.min.js"></script>
+    <script src="/assets/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="/assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="/assets/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+
+    <script src="/assets/plugins/sweetalert2/sweetalert2.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/assets/dist/js/adminlte.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="/assets/dist/js/demo.js"></script>
+    <script src="/admin/main.js"></script>
+
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+    <!-- Navbar -->
+    <%- include("navbar") %>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <%- include("sidebar") %>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+
+
+        <%- content %>
+
+
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+        All rights reserved.
+        <div class="float-right d-none d-sm-inline-block">
+            <b>Version</b> 3.1.0-rc
+        </div>
+    </footer>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+</body>
+</html>

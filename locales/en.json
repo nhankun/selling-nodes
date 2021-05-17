@@ -1,0 +1,33 @@
+{
+	"providers": {
+		"shops": {
+			"title": "providers.shops.title"
+		},
+		"title": "providers.title"
+	},
+	"publics": {
+		"create": "publics.create",
+		"basic_info": "publics.basic_info",
+		"cancel": "publics.cancel",
+		"submit": "publics.submit",
+		"status": "publics.status",
+		"search": "publics.search",
+		"icon": "publics.icon",
+		"close": "publics.close"
+	},
+	"admins": {
+		"categories": {
+			"name": "admins.categories.name",
+			"properties": {
+				"title": "admins.categories.properties.title",
+				"create": "admins.categories.properties.create"
+			},
+			"title": "admins.categories.title"
+		},
+		"sub_categories": {
+			"title": "admins.sub_categories.title"
+		},
+		"title": "admins.title",
+		"basic_info": "admins.basic_info"
+	}
+}

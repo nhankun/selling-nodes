@@ -1,0 +1,32 @@
+<%if(data && data.length){
+    for (const [key, value] of Object.entries(data)) {  
+        console.log(value);
+%>
+    <tr>
+        <td>.</td>
+        <td><%= value.name %></td>
+        <td>
+            <span class="elevation-2 widget-icon widget-user-img-container">
+                <img src="<%= (value.icon) ? '/images/uploadResults/' + value.icon : '/assets/upload/defaults/user1-128x128.jpg' %>" class="icon-lable widget-user-img-shape widget-user-img-full" alt="icon"></td>
+            </span>
+        <td>
+            <div class="form-group">
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" data-url="<%= `/admin/settings/categories/${value.id}/publish` %>" data-method="<%= value.status && value.status == 1 ? 'DELETE' : 'POST' %>" name="publish" value="<%= value.id %>" class="custom-control-input publish-sub-category" id="publish_<%= value.id %>" <%= value.status && value.status == 1 ? 'checked' : '' %>>
+                    <label class="custom-control-label" for="publish_<%= value.id %>"></label>
+                </div>
+            </div>
+            <!--<button type="button" class="btn btn-block bg-gradient-danger"><i class="fas fa-ban"></i></button>
+            <button type="button" class="btn btn-block bg-gradient-success"><i class="fas fa-check-circle"></i></button> -->
+        </td>
+        <td>
+            <div class="d-flex">
+                <a href="<%= `/admin/settings/categories/${value.id}/edit` %>" class="btn bg-gradient-primary p-2 flex-fill align-self-center mr-1"><i class="fas fa-edit"></i></a>
+                <a href="<%= `/admin/settings/categories/${value.id}` %>" class="simpleConfirm btn bg-gradient-danger p-2 flex-fill align-self-center"><i class="fas fa-trash"></i></a>
+            </div>
+        </td>
+    </tr>
+<%
+    }
+}
+%>

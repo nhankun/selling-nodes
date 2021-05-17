@@ -1,0 +1,64 @@
+[{
+  "_id": {
+    "$oid": "609d3b8a51294f1364cebe7c"
+  },
+  "createdAt": {
+    "$date": "2021-05-13T14:45:30.400Z"
+  },
+  "updatedAt": {
+    "$date": "2021-05-13T14:45:30.400Z"
+  },
+  "name": "Sách",
+  "icon": "1620917130395-nhandex-136941342_3628473603934547_2794957278678447088_n.jpg",
+  "banner": "1620917130394-nhandex-136941342_3628473603934547_2794957278678447088_n.jpg",
+  "properties": "[null,{\"name\":\"Chất liệu\",\"value\":\"\"},{\"name\":\"Mực\",\"value\":\"\"}]",
+  "__v": 0,
+  "status": 1
+},{
+  "_id": {
+    "$oid": "609d3ba851294f1364cebe7d"
+  },
+  "createdAt": {
+    "$date": "2021-05-13T14:46:00.735Z"
+  },
+  "updatedAt": {
+    "$date": "2021-05-13T14:46:00.735Z"
+  },
+  "name": "Laptop",
+  "icon": "1620917160731-nhandex-163283990_900371630811847_2277337014995855953_o.jpg",
+  "banner": "",
+  "properties": "[null,{\"name\":\"CPU\",\"value\":\"\"},{\"name\":\"GPU\",\"value\":\"\"},{\"name\":\"Screen\",\"value\":\"\"}]",
+  "__v": 0,
+  "status": 1
+},{
+  "_id": {
+    "$oid": "609d3bc851294f1364cebe7e"
+  },
+  "createdAt": {
+    "$date": "2021-05-13T14:46:32.411Z"
+  },
+  "updatedAt": {
+    "$date": "2021-05-13T14:46:32.411Z"
+  },
+  "name": "Điện thoại",
+  "icon": "1620917192405-nhandex-163827039_900371450811865_948414369653552187_o.jpg",
+  "banner": "",
+  "properties": "[null,{\"name\":\"CPU\",\"value\":\"\"},{\"name\":\"Rom\",\"value\":\"\"},{\"name\":\"Ram\",\"value\":\"\"},{\"name\":\"Screen\",\"value\":\"\"}]",
+  "__v": 0,
+  "status": 1
+},{
+  "_id": {
+    "$oid": "609d3bf251294f1364cebe7f"
+  },
+  "createdAt": {
+    "$date": "2021-05-13T14:47:14.238Z"
+  },
+  "updatedAt": {
+    "$date": "2021-05-13T14:47:14.238Z"
+  },
+  "name": "Phụ kiện",
+  "icon": "1620917234235-nhandex-164526660_900371790811831_456648954452931858_o.jpg",
+  "banner": "",
+  "properties": "[null,{\"name\":\"Chất liệu\",\"value\":\"\"},{\"name\":\"Màu sắc\",\"value\":\"\"}]",
+  "__v": 0
+}]

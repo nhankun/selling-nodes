@@ -1,0 +1,79 @@
+.width100px{
+    width: 100px;
+    height: auto;
+}
+
+.min70px{
+    min-width: 70px;
+}
+
+.max70px{
+    max-width: 70px;
+}
+
+.max90px{
+    max-width: 90px;
+}
+
+.hidden-element{
+    display: none;
+}
+
+.widget-user-img-full{
+    width: 100% !important;
+    height: auto !important;
+}
+
+.widget-user-img-container{
+    /* background-color: #333;
+    width: 100% !important;
+    height: auto !important; */
+    overflow: hidden;
+    /* visibility: hidden; */
+    border-radius: 50% !important;
+    position: relative;
+    display: flex;
+    align-items: center;
+    /* justify-content: center;
+    text-align: center; */
+}
+
+.widget-icon{
+    width: 100px !important;
+    height: 100px !important;
+}
+
+.widget-user-img-shape{
+    background-color: grey;
+    clip-path: circle(50% at 50% 50%);
+    shape-outside: circle(50% at 50% 50%);
+}
+
+.widget-user-img-container:hover .icon-lable{
+    transform: scale(1.5); /* 1.05 */
+    transition: all .5s;
+}
+
+/* custom fieldset */
+
+#custom-fieldset{
+    border: 1px solid #3c8dbc !important;
+    margin: 0 0 15px 0!important;
+    min-width: 0;
+    padding: 10px;
+    position: relative;
+    border-radius: 4px;
+    padding-left: 10px!important;
+}
+#custom-fieldset label {
+    font-weight: normal !important;
+}
+#custom-fieldset legend{
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0px;
+    width: inherit;
+    border: none !important;
+    padding: 5px 10px 5px 10px !important;
+    background-color: #ffffff;
+}

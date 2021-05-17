@@ -1,0 +1,76 @@
+[{
+  "_id": {
+    "$oid": "609d3c0051294f1364cebe80"
+  },
+  "createdAt": {
+    "$date": "2021-05-13T14:47:28.498Z"
+  },
+  "updatedAt": {
+    "$date": "2021-05-13T14:47:28.498Z"
+  },
+  "category_id": "609d3b8a51294f1364cebe7c",
+  "name": "Sách văn học",
+  "icon": "",
+  "status": 0,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "609d3c0c51294f1364cebe81"
+  },
+  "createdAt": {
+    "$date": "2021-05-13T14:47:40.617Z"
+  },
+  "updatedAt": {
+    "$date": "2021-05-13T14:47:40.617Z"
+  },
+  "category_id": "609d3b8a51294f1364cebe7c",
+  "name": "Sách giáo khoa",
+  "icon": "",
+  "status": 0,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "609d3c1751294f1364cebe82"
+  },
+  "createdAt": {
+    "$date": "2021-05-13T14:47:51.966Z"
+  },
+  "updatedAt": {
+    "$date": "2021-05-13T14:47:51.966Z"
+  },
+  "category_id": "609d3ba851294f1364cebe7d",
+  "name": "Laptop sinh viên",
+  "icon": "",
+  "status": 0,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "609d3c2551294f1364cebe83"
+  },
+  "createdAt": {
+    "$date": "2021-05-13T14:48:05.562Z"
+  },
+  "updatedAt": {
+    "$date": "2021-05-13T14:48:05.562Z"
+  },
+  "category_id": "609d3ba851294f1364cebe7d",
+  "name": "Laptop văn phòng",
+  "icon": "",
+  "status": 0,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "609d3c3351294f1364cebe84"
+  },
+  "createdAt": {
+    "$date": "2021-05-13T14:48:19.492Z"
+  },
+  "updatedAt": {
+    "$date": "2021-05-13T14:48:19.492Z"
+  },
+  "category_id": "609d3bc851294f1364cebe7e",
+  "name": "Điện thoại siêu sin",
+  "icon": "",
+  "status": 0,
+  "__v": 0
+}]

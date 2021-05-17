@@ -1,0 +1,19 @@
+<div class="form-group">
+    <label for="inputName"><%= __('admins.sub_categories.title') %></label>
+    <input type="text" id="inputName" name="name" class="form-control" value="<%= data.subCategory && data.subCategory.name ? data.subCategory.name : '' %>">
+    <p style="color: red;display:none;" id="error_name"></p>
+</div>
+<div class="form-group">
+    <select class="form-control select2" id="category_id" name="category_id" style="width: 100%;">
+        <option selected="selected" value=""><%= __('admins.categories.title') %></option>
+        <% if(data.categories) {
+            data.categories.forEach(function (value) {
+        %>
+            <option value="<%= value.id %>" <%= data.subCategory && data.subCategory.category_id === value.id ? 'selected="selected"' : '' %> ><%= value.name %></option>
+        <% 
+            })    
+        } 
+        %>
+    </select>
+</div>
+ 

@@ -1,0 +1,40 @@
+<%if(data && data.length){
+    for (const [key, value] of Object.entries(data)) {  
+        console.log(value);
+%>
+    <div class="info-box mb-3" style="border: 1px solid #17a2b8; box-shadow: 1px; box-shadow: 2px 2px 1px 1px #17a2b8;">
+        <span class="info-box-icon elevation-2 widget-icon widget-user-img-container">
+            <img src="<%= (value.icon) ? '/images/uploadResults/' + value.icon : '/assets/upload/defaults/user1-128x128.jpg' %>" class="icon-lable widget-user-img-shape widget-user-img-full" alt="icon">
+        </span>
+
+        <div class="info-box-content d-flex flex-row ">
+            <div class="p-2 mr-auto">
+                <span class="info-box-number"><%= value.name %></span>
+                <span class="info-box-text"><%= value.address %></span>
+
+                <div class="form-group m-0 p-0">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" name="publish" disabled class="custom-control-input" id="publish_<%= value.id %>" <%= value.status && value.status == 1 ? 'checked' : '' %>>
+                        <label class="custom-control-label" for="publish_<%= value.id %>"></label>
+                    </div>
+                </div>
+
+            </div>
+            <!--
+            <div class="p-2 align-self-center">
+               
+            </div>
+            -->
+            <div class="p-2 align-self-center">
+                <a href="" class="btn bg-gradient-primary"><i class="fa fa-eye"></i></a>
+                <a href="<%= `/providers/basic-infos/${value.id}/edit` %>" class="btn bg-gradient-primary"><i class="fas fa-edit"></i></a>
+                <a href="<%= `/providers/basic-infos/${value.id}` %>" class="simpleConfirm btn bg-gradient-danger"><i class="fas fa-trash"></i></a>    
+            </div>
+        </div>
+        <!-- /.info-box-content -->
+    </div>
+
+<%
+    }
+}
+%>

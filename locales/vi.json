@@ -1,0 +1,37 @@
+{
+	"publics": {
+		"icon": "icon",
+		"status": "Trạng thái",
+		"search": "Tìm kiếm",
+		"create": "Thêm mới",
+		"edit": "Sửa",
+		"close": "Đóng",
+		"submit_add": "Thêm",
+		"submit": "Xác nhận",
+		"cancel": "Thoát",
+		"basic_info": "Thông tin cơ bản"
+	},
+	"admins": {
+		"title": "Trang quản trị",
+		"basic_info": "Thông tin cơ bản",
+		"sub_categories": {
+			"title": "Danh mục con",
+			"name": "Tên danh mục"
+		},
+		"categories": {
+			"title": "Danh mục",
+			"name": "Tên danh mục",
+			"properties": {
+				"title": "Thuộc tính",
+				"create": "Thêm thuộc tính"
+			}
+		}
+	},
+	"providers": {
+		"title": "Nhà cung cấp",
+		"shops": {
+			"title": "Thông tin shop",
+			"name": "Tên shop"
+		}
+	}
+}

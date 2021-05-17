@@ -1,0 +1,284 @@
+<style>
+    /* input phone */
+    .iti{
+        position: relative;
+        display: block !important;
+    }
+    #admin-map-provider{
+        width: 100%;
+        height: 280px;
+        margin-bottom: 16px;
+    }
+    .leaflet-container {
+        cursor: auto !important;
+    }
+
+    /* provider-images */
+    .contain-provider-image{
+        position: relative;
+    }
+
+    .provider-images{
+        border: 0.1rem solid #17a2b8;
+        padding: 0.4rem;
+        border-radius: 4%;
+    }
+    .provider-image-btn-delete{
+        top: 5%;
+        right: 8%;
+        position: absolute;
+        display: none;
+        visibility: hidden;
+        border-radius: 50%;
+    }
+
+    .provider-image-btn-delete:hover i {
+        color: #17a2b8;
+    }
+
+    .contain-provider-image:hover .provider-image-btn-delete{
+        display: inline-block;
+        visibility: inherit;
+    }
+</style>
+
+<div class="row">
+    <!-- avatar and banner -->
+    <div class="col-md-6">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Hình ảnh</h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <div class="card card-widget widget-user">
+                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                        <div class="widget-user-header text-white banner-widget" style="background: url('<%= data.banner ? "/images/uploadResults/" + data.banner : "/assets/dist/img/photo1.png" %>') center center;">
+                            <h3 class="widget-user-username text-right"><%= data.name ? data.name : 'Tên shop của bạn' %></h3>
+                            <h5 class="widget-user-desc text-right">Avatar</h5>
+                        </div>
+                        <input type="file" name="banner" id="banner-input" class="hidden-element">
+                        <div class="widget-user-image widget-icon widget-user-img-container elevation-2">
+                            <img class="icon-lable widget-user-img-full widget-user-img-shape" src="<%= data.icon ? '/images/uploadResults/' + data.icon : '/assets/upload/defaults/add-image.png' %>" alt="User Avatar" >
+                            <input type="file" name="icon" id="icon-input" class="hidden-element">
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-sm-4 border-right">
+                                    <div class="description-block">
+                                        <h5 class="description-header">0,0</h5>
+                                        <span class="description-text">SALES</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-4 border-right">
+                                    <div class="description-block">
+                                        <h5 class="description-header">0,0</h5>
+                                        <span class="description-text">FOLLOWERS</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-4">
+                                    <div class="description-block">
+                                        <h5 class="description-header">0,0</h5>
+                                        <span class="description-text">PRODUCTS</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                    </div>
+                    <p style="color: red;display:none;" id="error_banner"></p>
+                    <p style="color: red;display:none;" id="error_icon"></p>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- basic - info -->
+    <div class="col-md-6">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title"><%= __('publics.basic_info') %></h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="name"><%= __('providers.shops.name') %></label>
+                    <input type="text" id="name" name="name" class="form-control" value="<%= data.name ? data.name : '' %>">
+                    <p style="color: red;display:none;" id="error_name"></p>
+                </div>
+                <!-- <fieldset class="row" id="custom-fieldset"> -->
+                    <!-- <legend>Danh mục bạn muốn bán</legend> -->
+                    <% //subCategories = (typeof data !== "undefined" && data != null && typeof data.subCategories !== "undefined" && data.subCategories != null) ? data.subCategories : null %> 
+                    <%// if(subCategories != null){ %> 
+                        <%// for(let subCategory of subCategories){ %> 
+                            <!-- <div class="checkbox col-md-3" style="margin-top:0"> -->
+                                <!-- <label>  -->
+                                    <!-- <input style="font-weight:normal" class="subCategories" name="subCategories[]" type="checkbox" value="<%=// subCategory.id %>"> -->
+                                    <%=// subCategory.name %>
+                                <!-- </label> -->
+                            <!-- </div> -->
+                        <%// } %> 
+                    <%// } %> 
+                        
+                </fieldset>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="phone">Số điện thoại</label>
+                            <input type="text" id="phone" name="phone" class="form-control" value="<%= data.phone ? data.phone : '' %>">
+                            <p style="color: red;display:none;" id="error_phone"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="website">Website</label>
+                            <input type="text" id="website" name="website" class="form-control" value="<%= data.website ? data.website : '' %>">
+                            <p style="color: red;display:none;" id="error_website"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" value="<%= data.email ? data.email : '' %>">
+                            <p style="color: red;display:none;" id="error_email"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- images -->
+    <div class="col-md-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <div class="card-title">
+              Hình ảnh
+            </div>
+          </div>
+          <div class="card-body">
+            <p style="color: red;display:none;" id="error_images"></p>
+            <input type="file" name="images[]" style="display:none" id="imageTmp" data-preview="general-preview" accept="image/x-png, image/jpeg,image/jpg" multiple>
+            <div class="row" id="general-preview">
+                <p class="col-sm-2">
+                    <a href="" class="btn-add-image">
+                        <img src="/assets/upload/defaults/add-image.png" width="253.66" height="253.66" class="img-fluid mb-2 provider-images" alt="add images">
+                    </a>
+                </p>
+                <% if ( typeof data.images !== 'undefined' && data.images ){ %>
+                    <% let iAscending = 0; %> 
+                    <% for (const image of data.images) { %> 
+                        <% iAscending++; %>  
+                        <div class="col-sm-2 contain-provider-image" id="<%= iAscending %>">
+                            <a href="<%= (image) ? `/images/uploadResults/${image}` : '' %>" data-toggle="lightbox" data-title="sample 3 - red" data-gallery="gallery">
+                                <img src="<%= (image) ? `/images/uploadResults/${image}` : '' %>" class="img-fluid mb-2 provider-images" alt="red sample">
+                            </a>
+                            <p class="btn bg-gradient-danger provider-image-btn-delete" data-url="/providers/basic-infos/<%= data.id %>/images" data-image="<%= (image) ? `/images/uploadResults/${image}` : '' %>"> <i class="fas fa-trash"></i></p>
+                        </div>
+                    <% } %> 
+                <% } %> 
+               
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- location -->
+    <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Vị trí tọa lạc</h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="admin-map-provider">
+                    
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="address">Địa chỉ</label>
+                            <input type="text" id="address" name="address" class="form-control" value="<%= data.address ? data.address : '' %>">
+                            <p style="color: red;display:none;" id="error_address"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="country">Quốc gia</label>
+                            <select name="country" id="country" class="form-control gds-cr select2" country-data-region-id="gds-cr-one" country-data-default-value="<%= data.country ? data.country : '' %>" data-language="vi"></select>
+                            <p style="color: red;display:none;" id="error_country"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="city">Tình thành phố</label>
+                            <select name="city" id="gds-cr-one" class="form-control city select2" region-data-default-value="<%= data.city ? data.city : '' %>"></select>
+                            <p style="color: red;display:none;" id="error_city"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="postcode">Mã bưu điện</label>
+                            <input type="text" id="postcode" name="postcode" class="form-control" value="<%= data.postcode ? data.postcode : '' %>">
+                            <p style="color: red;display:none;" id="error_postcode"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="longitude">Kinh độ</label>
+                            <input type="text" id="longitude" name="longitude" class="form-control longitude" value="<%= data.longitude ? data.longitude : '' %>">
+                            <p style="color: red;display:none;" id="error_longitude"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="latitude">Vĩ độ</label>
+                            <input type="text" id="latitude" name="latitude" class="form-control latitude" value="<%= data.latitude ? data.latitude : '' %>">
+                            <p style="color: red;display:none;" id="error_latitude"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    
+</div>
+<div class="row">
+    <div class="col-6">
+        <a href="#" class="btn btn-secondary cancel-submit" style="width: 100%;"><%= __('publics.cancel') %></a>
+    </div>
+
+    <div class="col-6">
+        <input type="submit" value="<%= __('publics.submit') %>" class="btn btn-success float-right" style="width: 100%;">
+    </div>
+</div>
+
+<!-- main file -->
+<script src="/admin/js/avatar_banner.js"></script>
+<script src="/admin/js/image.js"></script>
+<script src="/admin/js/providers/provider.js"></script>
