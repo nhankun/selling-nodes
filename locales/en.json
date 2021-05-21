@@ -1,33 +1,37 @@
 {
-	"providers": {
-		"shops": {
-			"title": "providers.shops.title"
-		},
-		"title": "providers.title"
-	},
 	"publics": {
-		"create": "publics.create",
-		"basic_info": "publics.basic_info",
-		"cancel": "publics.cancel",
-		"submit": "publics.submit",
-		"status": "publics.status",
-		"search": "publics.search",
-		"icon": "publics.icon",
-		"close": "publics.close"
+		"icon": "icon",
+		"status": "Trạng thái",
+		"search": "Tìm kiếm",
+		"create": "Thêm mới",
+		"edit": "Sửa",
+		"close": "Đóng",
+		"submit_add": "Thêm",
+		"submit": "Xác nhận",
+		"cancel": "Thoát",
+		"basic_info": "Thông tin cơ bản"
 	},
 	"admins": {
-		"categories": {
-			"name": "admins.categories.name",
-			"properties": {
-				"title": "admins.categories.properties.title",
-				"create": "admins.categories.properties.create"
-			},
-			"title": "admins.categories.title"
-		},
+		"title": "Trang quản trị",
+		"basic_info": "Thông tin cơ bản",
 		"sub_categories": {
-			"title": "admins.sub_categories.title"
+			"title": "Danh mục con",
+			"name": "Tên danh mục"
 		},
-		"title": "admins.title",
-		"basic_info": "admins.basic_info"
+		"categories": {
+			"title": "Danh mục",
+			"name": "Tên danh mục",
+			"properties": {
+				"title": "Thuộc tính",
+				"create": "Thêm thuộc tính"
+			}
+		}
+	},
+	"providers": {
+		"title": "Nhà cung cấp",
+		"shops": {
+			"title": "Thông tin shop",
+			"name": "Tên shop"
+		}
 	}
 }

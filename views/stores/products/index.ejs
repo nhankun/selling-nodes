@@ -1,0 +1,105 @@
+<% extend('../layouts/masters') %>
+ <!-- Content Header (Page header) -->
+ <section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1><%= __('providers.title') %></h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#"><%= __('providers.title') %></a></li>
+                    <li class="breadcrumb-item active"><%= __('providers.shops.title') %></li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-outline card-info">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <div class="row">
+                            <div class="col-5">
+                                <input type="text" class="form-control" id="search" placeholder="Tên loại">
+                            </div>
+                            <div class="col-4">
+                                <select class="form-control select2" id="status_search" style="width: 100%;">
+                                    <option selected="selected" value=""><%= __('publics.status') %></option>
+                                    <option value="1">Đã duyệt</option>
+                                    <option value="0">Chưa duyệt</option>
+                                    <option value="2">Chờ duyệt lại</option>
+                                </select>
+                            </div>
+                            <div class="col-3">
+                                <button class="btn btn-block btn-outline-info" id="btnsearch"> <%= __('publics.search') %></button>
+                            </div>
+                        </div>
+                    </h3>
+                    <div class="card-tools">
+                        <a href="/providers/basic-infos/create" class="btn btn-info"> <%= __('publics.create') %> </a>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body" id="pannel">
+                   
+                    <%- include("table",{data:data.providers}) %>
+                       
+                </div>
+                <div class="card-footer clearfix" id="pagination">
+                    <%- include("../../pagination", {paginator: pages}) %>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-->
+    </div>
+</section>
+<script src="/admin/back.js"></script>
+<script>
+    var categories = (function () {
+
+            const url = `/providers/basic-infos`;
+            var title = "Are you sure?";
+            var text = "You won't be able to revert this!";
+            var cancelButtonText = "Cancel";
+            var confirmButtonText = "Yes, delete it!";
+            var errorAjax = "server_issue";
+            var errorDelete = "error_delete";
+        
+            var onReady = function () {
+                $('#pagination').on('click', 'ul.pagination a', function (event) {
+                    back.pagination(event, $(this), errorAjax)
+                });
+                $('#pannel').on('change', function () {
+                }).on('click', '.simpleConfirm', function (event) {
+                    back.destroy(event, $(this), url, title, text, confirmButtonText, cancelButtonText, errorDelete)
+                });
+                $('th span').click(function () {
+                    back.ordering(url, $(this), errorAjax)
+                });
+                $('#btnsearch').click(function () {
+                    back.filters(url, errorAjax)
+                });
+                $('#search').keypress(function (event) {
+                    var keycode = (event.keyCode ? event.keyCode : event.which);
+                    // console.log(keycode);
+                    if (keycode == '13') {
+                        event.preventDefault();
+                        $('#btnsearch').focus().click();
+                    }
+                });
+                
+            };
+
+            return {
+                onReady: onReady
+            }
+
+        })();
+
+    $(document).ready(categories.onReady)
+
+</script>
