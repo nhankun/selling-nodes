@@ -1,0 +1,31 @@
+<% if (properties){ %>
+    <div class="card card-primary">
+        <div class="card-header">
+            <div class="card-title">
+                Thuộc tính
+            </div>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                    title="Collapse">
+                    <i class="fas fa-minus"></i></button>
+            </div>
+        </div>
+        <div class="card-body">
+            <% for (let [key, value] of Object.entries(JSON.parse(properties))) { if (value) { %>
+
+                <div class="form-row" id="<%= key %>">
+                    <div class="col-2 form-group d-flex justify-content-center">
+                        <label for="value_[<%= key %>]"><%= value.name %></label>
+                        <input name="properties[<%= key %>][name]" value="<%= value.name %>" type="text"
+                            class="form-control" id="name_[<%= key %>]" style="display: none;">
+                    </div>
+                    <div class="col-10 form-group">
+                        <input name="properties[<%= key %>][value]" value="<%= value.value %>" type="text"
+                            class="form-control" id="value_[<%= key %>]">
+                    </div>
+                </div>
+
+                <% } } %>
+        </div>
+    </div>
+    <% } %>

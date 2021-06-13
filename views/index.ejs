@@ -1,6 +1,6 @@
 <% extend('layout') %>
-<h1><%= title %></h1>
-<p>Welcome to <%= title %></p>
+<h1><%= typeof userSession !== 'undefined' && userSession ? userSession.name : title %></h1>
+<p>Welcome to <%= typeof userSession !== 'undefined' && userSession ? userSession.name : title %></p>
 
 <a href="/admin">Admin</a>
 <a href="/providers">Provider</a>

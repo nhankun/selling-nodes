@@ -1,0 +1,221 @@
+<style>
+
+    /* provider-images */
+    .contain-provider-image{
+        position: relative;
+    }
+
+    .provider-images{
+        border: 0.1rem solid #17a2b8;
+        padding: 0.4rem;
+        border-radius: 4%;
+    }
+    .provider-image-btn-delete{
+        top: 5%;
+        right: 8%;
+        position: absolute;
+        display: none;
+        visibility: hidden;
+        border-radius: 50%;
+    }
+
+    .provider-image-btn-delete:hover i {
+        color: #17a2b8;
+    }
+
+    .contain-provider-image:hover .provider-image-btn-delete{
+        display: inline-block;
+        visibility: inherit;
+    }
+</style>
+
+<div class="row">
+    <!-- avatar and banner -->
+    <div class="col-md-6">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Thông tin cơ bản</h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="name">Tên sản phẩm</label>
+                    <input type="text" id="name" name="name" class="form-control" value="<%= data.name ? data.name : '' %>">
+                    <p style="color: red;display:none;" id="error_name"></p>
+                </div>
+                <div class="form-group">
+                    <label for="price">Giá </label>
+                    <input type="number" id="price" name="price" class="form-control" value="<%= data.price ? data.price : '' %>">
+                    <p style="color: red;display:none;" id="error_name"></p>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Số lượng </label>
+                    <input type="number" id="quantity" name="quantity" class="form-control" value="<%= data.quantity ? data.quantity : '' %>">
+                    <p style="color: red;display:none;" id="error_name"></p>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- basic - info -->
+    <div class="col-md-6">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title"><%= __('publics.basic_info') %></h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="card-body">
+                <!-- <fieldset class="row" id="custom-fieldset"> -->
+                    <!-- <legend>Danh mục bạn muốn bán</legend> -->
+                    <% //subCategories = (typeof data !== "undefined" && data != null && typeof data.subCategories !== "undefined" && data.subCategories != null) ? data.subCategories : null %> 
+                    <%// if(subCategories != null){ %> 
+                        <%// for(let subCategory of subCategories){ %> 
+                            <!-- <div class="checkbox col-md-3" style="margin-top:0"> -->
+                                <!-- <label>  -->
+                                    <!-- <input style="font-weight:normal" class="subCategories" name="subCategories[]" type="checkbox" value="<%=// subCategory.id %>"> -->
+                                    <%=// subCategory.name %>
+                                <!-- </label> -->
+                            <!-- </div> -->
+                        <%// } %> 
+                    <%// } %> 
+                        
+                <!-- </fieldset> -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="category_id">Danh mục</label>
+                            <select name="category_id" id="category_id" class="form-control select2">
+                                <% for(let category of has.categories){ %> 
+                                    <option value="<%= category.id %>" 
+                                    <%= 
+                                    (typeof data.category_id !== 'undefined' && data.category_id) ? (data.category_id === category.id) ? "selected" : "" : ""
+                                    %> 
+                                        ><%= category.name %></option>
+                                <% } %> 
+                            </select>
+                            <p style="color: red;display:none;" id="error_phone"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="sub_category_id">Danh mục con</label>
+                            <select name="sub_category_id" id="sub_category_id" class="form-control select2">
+                                <% for(let subCategory of has.subCategories){ %> 
+                                    <option value="<%= subCategory.id %>"><%= subCategory.name %></option>
+                                <% } %> 
+                            </select>
+                            <p style="color: red;display:none;" id="error_phone"></p>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="category_id">Danh mục</label>
+                            <select name="category_id" id="category_id" class="form-control select2">
+                                <% for(let category of has.categories){ %> 
+                                    <option value="<%= category.id %>"><%= category.name %></option>
+                                <% } %> 
+                            </select>
+                            <p style="color: red;display:none;" id="error_phone"></p>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <div class="flag-properties col-md-12">
+        <% if (typeof data.properties !== 'undefined' && data.properties) { %> 
+        <%- include('./xhr/property', {properties: data.properties}) %> 
+        <% } %> 
+    </div>
+    <!-- images -->
+    <div class="col-md-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <div class="card-title">
+              Hình ảnh
+            </div>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fas fa-minus"></i></button>
+            </div>
+          </div>
+          <div class="card-body">
+            <p style="color: red;display:none;" id="error_images"></p>
+            <input type="file" name="images[]" style="display:none" id="imageTmp" data-preview="general-preview" accept="image/x-png, image/jpeg,image/jpg" multiple>
+            <div class="row" id="general-preview">
+                <p class="col-sm-2">
+                    <a href="" class="btn-add-image">
+                        <img src="/assets/upload/defaults/add-image.png" width="253.66" height="253.66" class="img-fluid mb-2 provider-images" alt="add images">
+                    </a>
+                </p>
+                <% if ( typeof data.images !== 'undefined' && data.images ){ %>
+                    <% let iAscending = 0; %> 
+                    <% for (const image of data.images) { %> 
+                        <% iAscending++; %>  
+                        <div class="col-sm-2 contain-provider-image" id="<%= iAscending %>">
+                            <a href="<%= (image) ? `/images/uploadResults/${image}` : '' %>" data-toggle="lightbox" data-title="sample 3 - red" data-gallery="gallery">
+                                <img src="<%= (image) ? `/images/uploadResults/${image}` : '' %>" class="img-fluid mb-2 provider-images" alt="red sample">
+                            </a>
+                            <p class="btn bg-gradient-danger provider-image-btn-delete" data-url="/providers/basic-infos/<%= data.id %>/images" data-image="<%= (image) ? `/images/uploadResults/${image}` : '' %>"> <i class="fas fa-trash"></i></p>
+                        </div>
+                    <% } %> 
+                <% } %> 
+               
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- description -->
+    <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Vị trí tọa lạc</h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="description">Mô tả</label>
+                    <textarea name="description" id="description" class="form-control" cols="30" rows="14"><%= data.description ? data.description : '' %></textarea>
+                    <p style="color: red;display:none;" id="error_phone"></p>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    
+</div>
+<div class="row">
+    <div class="col-6">
+        <a href="#" class="btn btn-secondary cancel-submit" style="width: 100%;"><%= __('publics.cancel') %></a>
+    </div>
+
+    <div class="col-6">
+        <input type="submit" value="<%= __('publics.submit') %>" class="btn btn-success float-right" style="width: 100%;">
+    </div>
+</div>
+
+<!-- main file -->
+<script src="/admin/js/image.js"></script>
+<script src="/admin/js/providers/product.js"></script>
+<script>
+    let editFlat = false;
+    <% if (typeof data.properties !== 'undefined' && data.properties){ %>
+        editFlat = true;
+    <% } %>
+</script>

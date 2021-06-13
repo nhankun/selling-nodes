@@ -7,9 +7,11 @@ const Product = new Schema({
     manufacturer_id  : { type: String },
     sub_category_id: { type: Array, default: undefined },
     name: { type: String },
+    images: { type: Array, default: undefined },
     quantity: { type: Number },
     price: { type: String },
-    description: { type: Text },
+    description: { type: String },
+    properties: { type: String },
     status: { type: Number },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }

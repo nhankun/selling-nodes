@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const bodyParser = require('body-parser');
 const i18n = require('i18n');
+const session = require('express-session');
+const flash = require('connect-flash');
 
 // env config
 const result = require('dotenv').config();
@@ -52,6 +54,19 @@ const lang = function(req, res,next){
   next();
 }
 app.use(lang);
+
+const memoryStore = new session.MemoryStore();
+app.use(session({
+  secret: "selling",
+	saveUninitialized: true,
+	resave: true,
+	store: memoryStore,
+	cookie: {
+		maxAge: 30 * 24 * 60 * 60 * 1000
+	}
+}));
+
+app.use(flash());
 
 // Route init
 route(app);

@@ -71,7 +71,7 @@ class BasicInfoController {
             }
 
             const provider = new Provider();
-            provider.user_id = 1;
+            provider.user_id = '60be28a3932b72422026ac25';
             // provider.subCategories = req.body.subCategories ? req.body.subCategories : '';
             provider.name       =      req.body.name;
             provider.icon       =      req.files.icon ? req.files.icon[0].filename : '';
@@ -153,7 +153,7 @@ class BasicInfoController {
                 
                 let dataUpdate = {};            
     
-                dataUpdate.user_id = 1;
+                dataUpdate.user_id = '60be28a3932b72422026ac25';
                 // req.body.subCategories ? dataUpdate.subCategories = req.body.subCategories : null;
                 req.body.name ?          dataUpdate.name = req.body.name : null;
                 req.body.address ?       dataUpdate.address = req.body.address : null;
