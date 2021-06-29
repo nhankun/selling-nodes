@@ -10,6 +10,9 @@ router.get('/sub-categories', SubCategoryController.index);
 /* create view sub category. */
 router.get('/sub-categories/create', SubCategoryController.create);
 
+/* create sub-category data in Elasticsearch from MongoDB */
+router.get('/sub-categories/createIndexElasticsearch', SubCategoryController.createIndex);
+
 /* store sub category */
 router.post('/sub-categories',  SubCategoryController.store);
 

@@ -14,35 +14,34 @@ class AuthController {
             // $2b$10$3RmQL/V0HFr7hBFjTjJr1.dNmv1sGAbj7cjg2MBdioWGoVMUvVqwK
             const body = req.body;
             const user = await User.findOne({ email: body.email });
-            debug(user)
             if (user) {
                 // check user password with hashed password stored in the database
-                const validPassword = await bcrypt.compare(body.password, user.password);
-                if (validPassword) {
-                    req.session.user = user
-                    if (user.status == 0) {
-                        return res.redirect('/admin/')
-                    }
+                const validPassword = await bcrypt.compare(body.password, user.password, (err, data) => {
+                    if(!data){
+                        res.status(400).json({ error: "Invalid Password" });
+                    } else {
+                        req.session.user = user
 
-                    if (user.status == 1) {
-                        return res.redirect('/')
+                        if (user.status == 0) {
+                            return res.redirect('/admin/')
+                        }
+                        if (user.status == 1) {
+                            return res.redirect('/')
+                        }
+                        if (user.status == 2) {
+                            return res.redirect('/providers')
+                        }
+                        if (user.status == 3) {
+                            return res.redirect('/')
+                        }
+                        return  res.status(200).json({ message: "Valid password" });
                     }
-
-                    if (user.status == 2) {
-                        return res.redirect('/providers')
-                    }
-
-                    if (user.status == 3) {
-                        return res.redirect('/')
-                    }
-                    return  res.status(200).json({ message: "Valid password" });
-                } else {
-                    res.status(400).json({ error: "Invalid Password" });
-                }
+                });
             } else {
                 res.status(401).json({ error: "User does not exist" });
             }
         }
+
         return  res.status(404)
     }
 
