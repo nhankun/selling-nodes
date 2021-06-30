@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const i18n = require('i18n');
 const session = require('express-session');
 const flash = require('connect-flash');
-
+const elasticsearch = require('elasticsearch');
 // env config
 const result = require('dotenv').config();
 if (result.error) {
@@ -17,10 +17,11 @@ if (result.error) {
 
 const route = require('./routes')
 const db = require('./config/db');
+const { getClient } = require('./app/controllers/providers/ClientController');
 // Connect to db
 db.connect();
 
-var app = express();
+const app = express();
 
 //Use Node.js body parsing middleware 
 app.use(bodyParser.json({ type: 'application/*+json' }));

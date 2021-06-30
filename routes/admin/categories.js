@@ -19,6 +19,9 @@ uploadImage.fields([{ name: 'banner', maxCount: 1 }, { name: 'icon', maxCount: 8
 */
 router.post('/categories',  CategoryController.store);
 
+/* create sub-category data in Elasticsearch from MongoDB */
+router.get('/categories/createIndexElasticsearch',  CategoryController.createIndex);
+
 /* view edit categories */
 router.get('/categories/:id/edit', function(req, res, next) {
   CategoryController.edit(req, res)

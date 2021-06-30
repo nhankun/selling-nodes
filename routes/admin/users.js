@@ -9,6 +9,8 @@ router.get('/users', ManageUserController.index);
 
 router.get('/users/create', ManageUserController.create);
 
+router.get('/users/createIndex', ManageUserController.createIndex);
+
 router.post('/users',  ManageUserController.store);
 
 router.get('/users/:id/edit', ManageUserController.edit);

@@ -10,13 +10,21 @@ const Schema = mongoose.Schema;
 */
 const User = new Schema({
     name: { type: String, maxLength: 225 },
-    email: { type:String },
-    password: { type: String },
-    icon: { type: String },
-    banner: { type: String },
+    email: { type: String, maxLength: 225 },
+    email_verified_at: { type: Date, default: Date.now },
+    password: { type: String, maxLength: 225 },
+    phone: { type: String, maxLength: 225 },
+    avatar: { type: String, maxLength: 225 },
+    address: { type: String, maxLength: 225 },
+    country: { type: String, maxLength: 225 },
+    city: { type: String, maxLength: 225 },
+    role: { type: String, maxLength: 225 },
+    district: { type: String, maxLength: 225 },
+    remember_token: { type: String },
     status: { type: Number },
-    createdAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, default: Date.now }
+    expires_at: { type: Date, default: Date.now },
+},{
+    timestamps: true,
 });
 
 module.exports = mongoose.model('User', User);
