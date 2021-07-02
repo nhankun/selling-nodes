@@ -87,7 +87,7 @@ $(function () {
         event.preventDefault();
         event.stopPropagation();
         $('#form-basic-info-provider').trigger('reset');
-        window.location.href = '/providers/basic-infos';
+        window.location.href = '/providers';
     });
 
     //setting phone pakage
